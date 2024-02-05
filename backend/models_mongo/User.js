@@ -20,6 +20,6 @@ const UserSchema = new Schema({
     }
 
     });
-    const user="ugn"
+    const user="USER"
 
     module.exports=mongoose.model(user,UserSchema);
