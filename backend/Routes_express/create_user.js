@@ -1,8 +1,10 @@
 
 const express=require('express');
-const { query } = require('express-validator');
+//const { query } = require('express-validator');
 const { body, validationResult } = require('express-validator');
 const router=express.Router();
+const bcrypt = require('bcrypt');   //used in hashing the password
+
 const User = require('../models_mongo/User')
 
 router.post('/',[
@@ -21,10 +23,16 @@ router.post('/',[
     if(check_duplicate){
       return res.status(200).send('The user is found with this email..... "Login Or Use different email')
     }
+
+      //hashing the password using bcrypt npm package
+
+      const saltRounds = 10;
+      const secured_password =await bcrypt.hash(req.body.password,saltRounds);
+
     await User.create({
         name: req.body.name,
         email:req.body.email,
-        password: req.body.password,
+        password: secured_password,
       }).then(user => res.json(user))
     }catch (error){
         console.error(error.message);
