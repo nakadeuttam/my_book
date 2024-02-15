@@ -4,9 +4,9 @@ const express=require('express');
 const { body, validationResult } = require('express-validator');
 const router=express.Router();
 const bcrypt = require('bcrypt');   //used in hashing the password
-
+const jwt = require('jsonwebtoken');
 const User = require('../models_mongo/User')
-
+const jwt_SECRET='Uttamnakadeneverifykiyahai'
 router.post('/',[
     body("name","Name must be min 3 letter").isLength({min:3}),
     body("email" , "Enter valid email").isEmail(),
@@ -29,11 +29,17 @@ router.post('/',[
       const saltRounds = 10;
       const secured_password =await bcrypt.hash(req.body.password,saltRounds);
 
-    await User.create({
+    const user=await User.create({
         name: req.body.name,
         email:req.body.email,
         password: secured_password,
-      }).then(user => res.json(user))
+      })
+      const peyload_data = {
+       user:{id:user.id}
+      }
+      console.log(peyload_data)
+      const token =jwt.sign(peyload_data,jwt_SECRET)
+      res.json(token)
     }catch (error){
         console.error(error.message);
         res.send("Some Unknown error is occured")
