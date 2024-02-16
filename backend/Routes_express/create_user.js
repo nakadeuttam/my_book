@@ -7,6 +7,7 @@ const bcrypt = require('bcrypt');   //used in hashing the password
 const jwt = require('jsonwebtoken');
 const User = require('../models_mongo/User')
 const jwt_SECRET='Uttamnakadeneverifykiyahai'
+const fetchUser=require('../middleware/fetchUser')
 
 //Sign Up section
 router.post('/signUp',[
@@ -90,5 +91,18 @@ async (req,res)=>{
 }
   
 });
+
+//End point to fetch User details
+router.post('/getUserData',fetchUser,async (req, res)=>{        //fetchUser is the middleware to decode the jwt token
+const user_id=req.user.id;
+try{
+  const UserData=await User.findById(user_id).select('-password');  //fetching UserData except password
+  res.send(UserData);
+}catch(error){
+  console.error(error.message);
+  res.status(500).send("Internal server error");
+}
+})
+
 
 module.exports = router;
