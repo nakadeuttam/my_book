@@ -7,7 +7,9 @@ const bcrypt = require('bcrypt');   //used in hashing the password
 const jwt = require('jsonwebtoken');
 const User = require('../models_mongo/User')
 const jwt_SECRET='Uttamnakadeneverifykiyahai'
-router.post('/',[
+
+//Sign Up section
+router.post('/signUp',[
     body("name","Name must be min 3 letter").isLength({min:3}),
     body("email" , "Enter valid email").isEmail(),
     body("password" , "Enter valid password").isLength({min:8})
@@ -44,6 +46,49 @@ router.post('/',[
         console.error(error.message);
         res.send("Some Unknown error is occured")
       }
+});
+
+
+//create login endPoint
+router.post('/login',[
+  body("email" , "Enter valid email").isEmail(),
+    body("password" , "Enter can not blank").exists(),
+],
+async (req,res)=>{
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+ 
+  const {email, password} =req.body;
+  let user=await User.findOne({email})
+  console.log(user.email);
+   try{
+  if(!user)     //User is not presnt
+  {
+    return res.status(400).send("User not found please sign up first");
+  }
+  else{
+    const passCompare = await bcrypt.compare(password,user.password);
+    if(!passCompare)
+    {
+
+     return res.status(400).send("password is incorrect");
+    }
+    else{
+      const data={
+        user:{id:user.id}
+
+      }
+      const authToken=jwt.sign(data,jwt_SECRET)
+      res.json({authToken});
+    }
+  }
+}catch(error){
+  console.error(error.message);
+  res.status(500).send("Internal server error");
+}
+  
 });
 
 module.exports = router;
