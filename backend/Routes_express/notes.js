@@ -57,6 +57,7 @@ router.put('/updateNote/:id',fetchUserData,async (req,res)=>{
 
 //Endpoint to delete the note
 router.delete('/deleteNote/:id',fetchUserData,async (req,res)=>{
+    try{
     let existing_note=await Notes.findById(req.params.id);
     if(!existing_note)
     {
@@ -69,5 +70,8 @@ router.delete('/deleteNote/:id',fetchUserData,async (req,res)=>{
     }
     await Notes.findByIdAndDelete(req.params.id);
     res.send(`The Note with title ${titleOfNote} is deleted Successfully`)
+}catch(error){console.error(error.message)
+    res.status(500).send("Internal Server Error")
+    };
 })
 module.exports = router;
