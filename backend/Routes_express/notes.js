@@ -31,4 +31,26 @@ async(req, res)=>{
     }
 });
 
+
+//Endpoint for Updating the existing notes 
+
+router.put('/updateNote/:id',fetchUserData,async (req,res)=>{
+    const{title,description}=req.body;
+    const newNote={};
+    if(title){newNote.title=title};
+    if(description){newNote.description=description};
+
+    let existing_note=await Notes.findById(req.params.id);  //req.params.id is the id of note in Notes table
+    
+    if(!existing_note){return res.status(404).send('Not Found')};
+    //check whether user is authorized
+    if(existing_note.user.toString()!== req.user.id)
+    {
+        return res.status(404).send("Dont have access")
+    }
+    //Lets update the note
+    existing_note=await Notes.findByIdAndUpdate(req.params.id,{$set: newNote},{new:true});
+    res.json({existing_note});
+
+})
 module.exports = router;
