@@ -52,5 +52,22 @@ router.put('/updateNote/:id',fetchUserData,async (req,res)=>{
     existing_note=await Notes.findByIdAndUpdate(req.params.id,{$set: newNote},{new:true});
     res.json({existing_note});
 
+});
+
+
+//Endpoint to delete the note
+router.delete('/deleteNote/:id',fetchUserData,async (req,res)=>{
+    let existing_note=await Notes.findById(req.params.id);
+    if(!existing_note)
+    {
+        return res.status(404).send("Data Not Found")
+    }
+    const titleOfNote=existing_note.title;
+    if(existing_note.user.toString()!=req.user.id)
+    {
+        return res.status(404).send("Dont have access")
+    }
+    await Notes.findByIdAndDelete(req.params.id);
+    res.send(`The Note with title ${titleOfNote} is deleted Successfully`)
 })
 module.exports = router;
