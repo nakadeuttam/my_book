@@ -1,11 +1,12 @@
 import React from 'react'
 
-const About = () => {
+function About() {
   return (
     <div>
-      And this is what about
+      This is about
     </div>
   )
 }
 
 export default About
+
