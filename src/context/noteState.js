@@ -17,17 +17,21 @@ const noteis={
 }
 setNote(notes.concat(noteis));
 }
-//Delete Note
-const deleteNote = (note)=>{
 
+//Delete Note
+const deleteNote = (id)=>{
+console.log("This note will be delete " + id); 
+const newNote = notes.filter((note)=>{
+  return note._id!== id;
+  
+})
+setNote(newNote);
 }
+
 //Edit Note
 const editNote = (note)=>{
 
 }
-
-
-
 
   //Dummy Notes instead of Actual Api
     const myNote = [
@@ -83,7 +87,7 @@ const editNote = (note)=>{
     
     return(
         /*   It specify that all children can access this state */
-        <NoteContext.Provider value={{notes,setNote,addNote}}>
+        <NoteContext.Provider value={{notes,setNote,addNote,deleteNote}}>
             {props.children}     
         </NoteContext.Provider>
     )
