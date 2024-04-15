@@ -2,7 +2,21 @@
 import { useState } from 'react';
 import NoteContext from './noteContext';
 const NoteState =(props)=> {
+const host ="http://localhost:5000";
 
+//Get Notes
+
+const get_Notes= async()=>{
+  const response = await fetch(`${host}/notes/Your_notes`,{method:"GET",headers:{
+    'Content-Type':'application/json',
+    "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVjZjBmYjQ2YmZlMTczNzU5ODA1YmVjIn0sImlhdCI6MTcwODA5Nzg1NX0.iufGs7Drwakl-1MFRGsJ0ilufRuLc1brJFFwoSjwaeU"
+  
+  }});      //we used this function in note.js with useeffect that will run for 1st time
+  
+    const res_json= await response.json();
+    console.log(res_json);
+    setNote(res_json);
+}
 
 //Add Note
 const addNote = (title,description)=>{
@@ -29,65 +43,25 @@ setNote(newNote);
 }
 
 //Edit Note
-const editNote = (note)=>{
+const edit_Note =async (title,description)=>{
+const response = await fetch(`${host}/notes/Your_notes`,{method:"GET",headers:{
+  "Content-type":"application/json",
+  "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVjZjBmYjQ2YmZlMTczNzU5ODA1YmVjIn0sImlhdCI6MTcwODA5Nzg1NX0.iufGs7Drwakl-1MFRGsJ0ilufRuLc1brJFFwoSjwaeU",
 
+}});
+
+  const res_json= await response.json();
+  console.log(res_json);
 }
 
-  //Dummy Notes instead of Actual Api
-    const myNote = [
-        {
-          "_id": "65d0b946ceca70480gfhj8a699f6",
-          "user": "65cf0fb46bfe173759805bec",
-          "title": "Note no. 01",
-          "description": "It is my first updated note i am storing in my account",
-          "date": "2024-02-17T13:48:54.706Z",
-          "__v": 0
-        },
-        {
-            "_id": "65d0b946ce",
-            "user": "65cf0fb46bfe173759805bec",
-            "title": "Note no. 02 bjyvyjgyugyug",
-            "description": "It is my first updated note i am storing in my account",
-            "date": "2024-02-17T13:48:54.706Z",
-            "__v": 0
-          },  {
-            "_id": "65d0b946ceca7jh04808a699f6",
-            "user": "65cf0fb46bfe173759805bec",
-            "title": "Note no. 01",
-            "description": "It is my first updated note i am storing in my account",
-            "date": "2024-02-17T13:48:54.706Z",
-            "__v": 0
-          },
-          {
-              "_id": "65d0b94sd6ce",
-              "user": "65cfdsd0fb46bfe173759805bec",
-              "title": "Note no. 02",
-              "description": "It is my first updated note i am storing in my account",
-              "date": "2024-02-17T13:48:54.706Z",
-              "__v": 0
-            },  {
-                "_id": "65d0hjb946ceca704808a699f6",
-                "user": "65cf0fb46bfe173759805bec",
-                "title": "Note no. 01",
-                "description": "It is my first updated note i am storing in my account",
-                "date": "2024-02-17T13:48:54.706Z",
-                "__v": 0
-              },
-              {
-                  "_id": "65d0ertb946ce",
-                  "user": "65cf0fb46bfe173759805bec",
-                  "title": "Note no. 02",
-                  "description": "It is my first updated note i am storing in my account",
-                  "date": "2024-02-17T13:48:54.706Z",
-                  "__v": 0
-                }
-    ]
+  
+    const myNote = []
     const [notes,setNote,] = useState(myNote);
 
     
     return(
         /*   It specify that all children can access this state */
-        <NoteContext.Provider value={{notes,setNote,addNote,deleteNote}}>
+        <NoteContext.Provider value={{notes,setNote,addNote,deleteNote,edit_Note,get_Notes}}>
             {props.children}     
         </NoteContext.Provider>
     )

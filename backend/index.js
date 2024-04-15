@@ -1,10 +1,10 @@
 const connectToMongo = require('./db')
-
-
+var cors = require('cors')
 connectToMongo();
 
 const express = require('express')
 const app = express()
+app.use(cors())
 const port = 5000
 app.use(express.json())       //it is require to write so that to read req.body otherwise you cant work with request bosy
 app.use('/sign_up', require('./Routes_express/create_user'))
