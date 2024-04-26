@@ -19,27 +19,28 @@ const get_Notes= async()=>{
 }
 
 //Add Note
-const addNote = (title,description)=>{
-  console.log(description)
-const noteis={
-  "_id": title,
-  "user": "65cf0fb46bfe173759655805bec",
-  "title": title,
-  "description": description,
-  "date": "2024-02-17T13:48:54.706Z",
-  "__v": 0
-}
-setNote(notes.concat(noteis));
+const addNote = async(title,description)=>{
+ const response= await fetch(`${host}/notes/createNote`,{method: 'POST', headers:{
+  'Content-Type':'application/json',
+    "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVjZjBmYjQ2YmZlMTczNzU5ODA1YmVjIn0sImlhdCI6MTcwODA5Nzg1NX0.iufGs7Drwakl-1MFRGsJ0ilufRuLc1brJFFwoSjwaeU"
+ },body:JSON.stringify({title , description})});
+
+ const res_json=await response.json();
+ 
+ console.log(res_json);
+
+setNote(notes.concat(res_json));
+
 }
 
 //Delete Note
-const deleteNote = (id)=>{
+const deleteNote = async (id)=>{
 console.log("This note will be delete " + id); 
-const newNote = notes.filter((note)=>{
-  return note._id!== id;
-  
-})
-setNote(newNote);
+const response = await fetch(`${host}/notes/deleteNote/${id}`,{method:"DELETE",headers:{
+  'Content-Type':'application/json',
+  'auth-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVjZjBmYjQ2YmZlMTczNzU5ODA1YmVjIn0sImlhdCI6MTcwODA5Nzg1NX0.iufGs7Drwakl-1MFRGsJ0ilufRuLc1brJFFwoSjwaeU'
+}});
+get_Notes();
 }
 
 //Edit Note
