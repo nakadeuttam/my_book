@@ -40,19 +40,21 @@ const response = await fetch(`${host}/notes/deleteNote/${id}`,{method:"DELETE",h
   'Content-Type':'application/json',
   'auth-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVjZjBmYjQ2YmZlMTczNzU5ODA1YmVjIn0sImlhdCI6MTcwODA5Nzg1NX0.iufGs7Drwakl-1MFRGsJ0ilufRuLc1brJFFwoSjwaeU'
 }});
-get_Notes();
+get_Notes();      //once call get_Notes to fetch updated note from db
 }
 
 //Edit Note
-const edit_Note =async (title,description)=>{
-const response = await fetch(`${host}/notes/Your_notes`,{method:"GET",headers:{
+const edit_Note =async (id,title,description)=>{
+  console.log(`${host}/notes/updateNote/${id}`)
+const response = await fetch(`${host}/notes/updateNote/${id}`,{method:"PUT",headers:{
   "Content-type":"application/json",
-  "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVjZjBmYjQ2YmZlMTczNzU5ODA1YmVjIn0sImlhdCI6MTcwODA5Nzg1NX0.iufGs7Drwakl-1MFRGsJ0ilufRuLc1brJFFwoSjwaeU",
-
-}});
+  "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVjZjBmYjQ2YmZlMTczNzU5ODA1YmVjIn0sImlhdCI6MTcwODA5Nzg1NX0.iufGs7Drwakl-1MFRGsJ0ilufRuLc1brJFFwoSjwaeU"},
+  body:JSON.stringify({title , description})
+});
 
   const res_json= await response.json();
   console.log(res_json);
+  get_Notes();      //once call get_Notes to fetch updated note from db
 }
 
   

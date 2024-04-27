@@ -7,21 +7,21 @@ const Note = () => {
   const {addNote} = useContext(noteContext);
     const Context = useContext(noteContext)
     const {notes,get_Notes,edit_Note} = Context;
-    const [note,setNote] = useState( {etitle:"" , edescription:""});
+    const [note,setNote] = useState( { id:"" , etitle:"" , edescription:""});
     useEffect(()=>{
       get_Notes();      //it will call ger_Notes once
     },[]);
 
     const ref=useRef(null);
     const updateNote =(note)=>{
-      setNote({etitle:note.title, edescription:note.description});
+      setNote({id:note._id,etitle:note.title, edescription:note.description});
       ref.current.click();
     }
     const handleclick = (ele) => {
-
+      edit_Note(note.id,note.etitle,note.edescription);
       ele.preventDefault();
   
-  edit_Note(note.etitle,note.edescription);
+  
   }
     const onChange = (ele) => {
       setNote({...note,[ele.target.name]:ele.target.value})
@@ -35,7 +35,7 @@ const Note = () => {
 </button>
 
 {/* modal for edit_Note UI to edit note*/}
-<div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div className="modal-dialog">
     <div className="modal-content">
       <div className="modal-header">
@@ -75,14 +75,14 @@ const Note = () => {
         />
       </div>
       
-      <button type="submit" onClick={handleclick} className="btn btn-primary">
+      {/* <button type="submit" onClick={handleclick} className="btn btn-primary">
         Update
-      </button>
+      </button> */}
     </form>
       </div>
       <div className="modal-footer">
-        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" className="btn btn-primary">Save changes</button>
+      
+        <button type="submit" onClick={handleclick} className="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
       </div>
     </div>
   </div>
