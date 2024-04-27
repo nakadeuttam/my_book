@@ -7,8 +7,8 @@ const AddNote = () => {
     const {addNote} = useContext(noteContext);
     const handleclick = (ele) => {
         ele.preventDefault();
-    
-    addNote(note.title,note.description);
+        addNote(note.title,note.description);
+        setNote({title:"" , description:""})
     }
 
     const onChange = (ele) => {
@@ -31,6 +31,7 @@ const AddNote = () => {
           name="title"
           aria-describedby="title"
           onChange={onChange}
+          value={note.title}
         />
         <div id="emailHelp" className="form-text">
           Title will help you to search Note
@@ -46,10 +47,11 @@ const AddNote = () => {
           id="description"
           name='description'
           onChange={onChange}
+          value={note.description}
         />
       </div>
       
-      <button type="submit" onClick={handleclick} className="btn btn-primary">
+      <button type="submit" disabled={note.title.length < 3 || note.description.length < 3} onClick={handleclick} className="btn btn-primary">
         Submit
       </button>
     </form>

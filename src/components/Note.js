@@ -82,12 +82,13 @@ const Note = () => {
       </div>
       <div className="modal-footer">
       
-        <button type="submit" onClick={handleclick} className="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
+        <button type="submit" disabled={note.etitle.length < 3 || note.edescription.length < 3} onClick={handleclick} className="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
       </div>
     </div>
   </div>
 </div>
     <div className="container">
+      {notes.length === 0 && <h2 className="text-center">No Notes Avilable</h2>}
     <div className='row'>{notes.map((note)=>{
       return <Noteitem title={note.title} description={note.description} key={note._id}  note={note} updateNote={updateNote}></Noteitem>
     })}</div></div>

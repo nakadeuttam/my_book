@@ -45,7 +45,6 @@ get_Notes();      //once call get_Notes to fetch updated note from db
 
 //Edit Note
 const edit_Note =async (id,title,description)=>{
-  console.log(`${host}/notes/updateNote/${id}`)
 const response = await fetch(`${host}/notes/updateNote/${id}`,{method:"PUT",headers:{
   "Content-type":"application/json",
   "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVjZjBmYjQ2YmZlMTczNzU5ODA1YmVjIn0sImlhdCI6MTcwODA5Nzg1NX0.iufGs7Drwakl-1MFRGsJ0ilufRuLc1brJFFwoSjwaeU"},
