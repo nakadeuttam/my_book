@@ -57,32 +57,34 @@ router.post('/login',[
 ],
 async (req,res)=>{
   const errors = validationResult(req);
+  let success = false;
   if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
+    return res.status(400).json({success, errors: errors.array() });
   }
  
   const {email, password} =req.body;
   let user=await User.findOne({email})
-  console.log(user.email);
    try{
   if(!user)     //User is not presnt
   {
-    return res.status(400).send("User not found please sign up first");
+    success=false;
+    return res.status(400).json({success , error : "User not found please sign up first"});
   }
   else{
     const passCompare = await bcrypt.compare(password,user.password);
     if(!passCompare)
     {
-
-     return res.status(400).send("password is incorrect");
+      success=false;
+     return res.status(400).json({success , error : "password is incorrect"});
     }
     else{
       const data={
         user:{id:user.id}
 
       }
-      const authToken=jwt.sign(data,jwt_SECRET)
-      res.json({authToken});
+      const authToken=jwt.sign(data,jwt_SECRET);
+      success=true;
+      res.json({success , authToken});
     }
   }
 }catch(error){
