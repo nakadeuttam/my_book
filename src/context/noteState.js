@@ -13,7 +13,7 @@ const[loginToggle,setLoginToggle]=useState('hidden');
 const get_Notes= async()=>{
   const response = await fetch(`${host}/notes/Your_notes`,{method:"GET",headers:{
     'Content-Type':'application/json',
-    "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVjZjBmYjQ2YmZlMTczNzU5ODA1YmVjIn0sImlhdCI6MTcwODA5Nzg1NX0.iufGs7Drwakl-1MFRGsJ0ilufRuLc1brJFFwoSjwaeU"
+    "auth-token":localStorage.getItem('token')
   
   }});      //we used this function in note.js with useeffect that will run for 1st time
   
@@ -26,7 +26,7 @@ const get_Notes= async()=>{
 const addNote = async(title,description)=>{
  const response= await fetch(`${host}/notes/createNote`,{method: 'POST', headers:{
   'Content-Type':'application/json',
-    "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVjZjBmYjQ2YmZlMTczNzU5ODA1YmVjIn0sImlhdCI6MTcwODA5Nzg1NX0.iufGs7Drwakl-1MFRGsJ0ilufRuLc1brJFFwoSjwaeU"
+    "auth-token":localStorage.getItem('token')
  },body:JSON.stringify({title , description})});
 
  const res_json=await response.json();
@@ -42,7 +42,7 @@ const deleteNote = async (id)=>{
 console.log("This note will be delete " + id); 
 const response = await fetch(`${host}/notes/deleteNote/${id}`,{method:"DELETE",headers:{
   'Content-Type':'application/json',
-  'auth-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVjZjBmYjQ2YmZlMTczNzU5ODA1YmVjIn0sImlhdCI6MTcwODA5Nzg1NX0.iufGs7Drwakl-1MFRGsJ0ilufRuLc1brJFFwoSjwaeU'
+  'auth-token':localStorage.getItem('token')
 }});
 get_Notes();      //once call get_Notes to fetch updated note from db
 }
@@ -51,7 +51,7 @@ get_Notes();      //once call get_Notes to fetch updated note from db
 const edit_Note =async (id,title,description)=>{
 const response = await fetch(`${host}/notes/updateNote/${id}`,{method:"PUT",headers:{
   "Content-type":"application/json",
-  "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVjZjBmYjQ2YmZlMTczNzU5ODA1YmVjIn0sImlhdCI6MTcwODA5Nzg1NX0.iufGs7Drwakl-1MFRGsJ0ilufRuLc1brJFFwoSjwaeU"},
+  "auth-token":localStorage.getItem('token')},
   body:JSON.stringify({title , description})
 });
 

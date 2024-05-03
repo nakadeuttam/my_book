@@ -2,14 +2,24 @@ import React, { useEffect,useRef ,useState} from 'react'
 import noteContext from '../context/noteContext';
 import { useContext} from 'react';
 import Noteitem from './Noteitem';
+import { useNavigate } from "react-router-dom";
 const Note = () => {
-
+  const navigate = useNavigate();
   const {addNote} = useContext(noteContext);
     const Context = useContext(noteContext)
     const {notes,get_Notes,edit_Note} = Context;
     const [note,setNote] = useState( { id:"" , etitle:"" , edescription:""});
+   
+   //get the notes once logged in into account
     useEffect(()=>{
-      get_Notes();      //it will call ger_Notes once
+      if(localStorage.getItem('token'))
+        {
+          get_Notes();      //it will call ger_Notes once
+        }
+        else{
+          alert("Do login first");
+          navigate("/login");
+        }
     },[]);
 
     const ref=useRef(null);

@@ -1,12 +1,19 @@
 import * as React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, Navigate, useLocation ,useNavigate} from "react-router-dom";
 import "./Navbar.css";
 const Navbar = () => {
   let location = useLocation();
   React.useEffect(() => {
     console.log(location);
   }, [location]);
+  const navigate = useNavigate();
 
+  //Logged out function
+  const handleLoggedOut=()=>{
+    
+    localStorage.removeItem('token');
+    navigate('/login');
+  }
   const NAV_style = { backgroundColor: "#253a59" };
   return (
     <>
@@ -96,7 +103,7 @@ const Navbar = () => {
               </li>
               
             </ul>
-                  <div className="d-flex">
+                  {(!localStorage.getItem('token'))? <div className="d-flex">
                   <Link
                 className={`login mx-2 nav-link ${
                   location.pathname === "/login"
@@ -117,7 +124,11 @@ const Navbar = () => {
               >
                 Sign Up
               </Link>
-                  </div>
+                  </div> : <button className={`login mx-2 nav-link ${
+                  location.pathname === "/login"
+                    ? "active font-weight-bold"
+                    : ""
+                }`} onClick={handleLoggedOut}>Log Out</button>}
           </div>
         </div>
       </nav>
