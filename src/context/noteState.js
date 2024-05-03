@@ -4,6 +4,10 @@ import NoteContext from './noteContext';
 const NoteState =(props)=> {
 const host ="http://localhost:5000";
 
+//login state
+const[loginToggle,setLoginToggle]=useState('hidden');
+
+
 //Get Notes
 
 const get_Notes= async()=>{
@@ -63,7 +67,7 @@ const response = await fetch(`${host}/notes/updateNote/${id}`,{method:"PUT",head
     
     return(
         /*   It specify that all children can access this state */
-        <NoteContext.Provider value={{notes,setNote,addNote,deleteNote,edit_Note,get_Notes}}>
+        <NoteContext.Provider value={{notes,setNote,addNote,deleteNote,edit_Note,get_Notes,loginToggle,setLoginToggle}}>
             {props.children}     
         </NoteContext.Provider>
     )

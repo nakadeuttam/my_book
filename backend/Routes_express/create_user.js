@@ -20,11 +20,13 @@ router.post('/signUp',[
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
+    let userFound=false;
 
     try{
     const check_duplicate=await User.findOne({email:req.body.email})
     if(check_duplicate){
-      return res.status(200).send('The user is found with this email..... "Login Or Use different email')
+      userFound=true;
+      return res.status(200).json({userFound ,error :'The user is found with this email..... "Login Or Use different email'})
     }
 
       //hashing the password using bcrypt npm package

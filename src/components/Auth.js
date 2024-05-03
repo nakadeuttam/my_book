@@ -1,15 +1,10 @@
-import React, { useState ,useContext, useEffect} from 'react'
+import React, { useState } from 'react'
 import { Link ,useNavigate} from 'react-router-dom'
 import "./Login.css"
-import noteContext from '../context/noteContext';
-const Login = () => {
-    const Context = useContext(noteContext)
-    const{loginToggle,setLoginToggle}=Context;
+function Auth() {
     const [credentials,setCredentials]=useState({email:"" , password:"" , email_signup:"" , password_signup:"" , Name:""})
-   useEffect(()=>{setLoginToggle('hidden')},[]);
-  
+    const [loginToggle,setLoginToggle] = useState('hidden');
     // TO toggle between Sign in & Sign Up form
-   
     const toggle=()=>{
         if(loginToggle==='hidden'){
             setLoginToggle('active');
@@ -80,7 +75,7 @@ const Login = () => {
   return (
     <div className="loginBody">
     
-    <div className={`container  ${loginToggle}  loginContainer`} id="container loginContainer">
+    <div className={`container ${loginToggle}  loginContainer`} id="container loginContainer">
         <div className="form-container sign-up">
             <form onSubmit={handleSignup}>
                 <h1>Create Account</h1>
@@ -133,4 +128,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Auth
