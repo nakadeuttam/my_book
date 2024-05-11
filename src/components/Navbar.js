@@ -53,18 +53,7 @@ const Navbar = () => {
                   About
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link
-                  className={`nav-link ${
-                    location.pathname === "/temp"
-                      ? "active font-weight-bold"
-                      : ""
-                  }`}
-                  to="/temp"
-                >
-                  Link
-                </Link>
-              </li>
+              
               <li className="nav-item dropdown">
                 <Link
                   className="nav-link dropdown-toggle"
@@ -73,17 +62,17 @@ const Navbar = () => {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  Dropdown
+                  Mode
                 </Link>
                 <ul className="dropdown-menu">
                   <li>
                     <Link className="dropdown-item" to="#">
-                      Action
+                      Dark
                     </Link>
                   </li>
                   <li>
                     <Link className="dropdown-item" to="#">
-                      Another action
+                      Light
                     </Link>
                   </li>
                   <li>
@@ -91,16 +80,12 @@ const Navbar = () => {
                   </li>
                   <li>
                     <Link className="dropdown-item" to="#">
-                      Something else here
+                      Default
                     </Link>
                   </li>
                 </ul>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link disabled" aria-disabled="true">
-                  Disabled
-                </Link>
-              </li>
+              
               
             </ul>
                   {(!localStorage.getItem('token'))? <div className="d-flex">
