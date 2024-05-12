@@ -60,7 +60,7 @@ function HomeIntro() {
           <ul>
             <li><a href="">Portfolio</a></li>
             <li><a href="">NewsApp</a></li>
-            <li><a href="">TextUtils</a></li>
+            <li><a href="https://nakadeuttam.github.io/my-react-app/" target="_blank">TextUtils</a></li>
             </ul>
           </div>
         </div>

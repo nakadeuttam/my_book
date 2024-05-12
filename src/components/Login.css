@@ -7,15 +7,15 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-loginBody{
+.loginBody{
     
     background-color: #c9d6ff;
-    background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+    background: linear-gradient(rgb(37, 58, 89), #ca9797, #9198e5);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    height: 100vh;
+    height: 91vh;
 }
 
 .loginContainer{
@@ -209,4 +209,7 @@ loginBody{
 
 .loginContainer.active .toggle-right{
     transform: translateX(200%);
+}
+input{
+    color:#333
 }

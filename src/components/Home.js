@@ -5,13 +5,14 @@ import AddNote from "./AddNote";
 const Home = () => {
 
   return (
-    <>
+    <div>
       
       <AddNote></AddNote>
       <div>
         <Note></Note>
       </div>
-    </>
+      
+      </div>
   );
 };
 
