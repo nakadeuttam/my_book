@@ -9,13 +9,13 @@ function About() {
       <div className="wrapper">
         <div className="container my-4">
           <h4>Simple 3 steps to follow :-</h4>
-          <div id="carouselExampleCaptions" class="carousel slide">
-            <div class="carousel-indicators">
+          <div id="carouselExampleCaptions" className="carousel slide">
+            <div className="carousel-indicators">
               <button
                 type="button"
                 data-bs-target="#carouselExampleCaptions"
                 data-bs-slide-to="0"
-                class="active"
+                className="active"
                 aria-current="true"
                 aria-label="Slide 1"
               ></button>
@@ -32,60 +32,60 @@ function About() {
                 aria-label="Slide 3"
               ></button>
             </div>
-            <div class="carousel-inner">
-              <div class="carousel-item active">
+            <div className="carousel-inner">
+              <div className="carousel-item active">
                 <img src={signup} alt="..." />
-                <div class="carousel-caption d-none d-md-block">
+                <div className="carousel-caption d-none d-md-block">
                   <h5>Sign Up</h5>
                   <p>Use email to Register as a new User.</p>
                 </div>
               </div>
-              <div class="carousel-item">
+              <div className="carousel-item">
                 <img
                   src={login}
-                  class="d-block w-100"
+                  className="d-block w-100"
                   alt="..."
                 />
-                <div class="carousel-caption d-none d-md-block">
+                <div className="carousel-caption d-none d-md-block">
                   <h5>Log in </h5>
                   <p>Simply Log in into your account.</p>
                 </div>
               </div>
-              <div class="carousel-item">
-                <img src={explore} class="d-block w-100" alt="..." />
-                <div class="carousel-caption d-none d-md-block">
+              <div className="carousel-item">
+                <img src={explore} className="d-block w-100" alt="..." />
+                <div className="carousel-caption d-none d-md-block">
                   <h5>Store & Manage your Notes</h5>
                   <p>Enjoy the features.</p>
                 </div>
               </div>
             </div>
             <button
-              class="carousel-control-prev"
+              className="carousel-control-prev"
               type="button"
               data-bs-target="#carouselExampleCaptions"
               data-bs-slide="prev"
             >
               <span
-                class="carousel-control-prev-icon"
+                className="carousel-control-prev-icon"
                 aria-hidden="true"
               ></span>
-              <span class="visually-hidden">Previous</span>
+              <span className="visually-hidden">Previous</span>
             </button>
             <button
-              class="carousel-control-next"
+              className="carousel-control-next"
               type="button"
               data-bs-target="#carouselExampleCaptions"
               data-bs-slide="next"
             >
               <span
-                class="carousel-control-next-icon"
+                className="carousel-control-next-icon"
                 aria-hidden="true"
               ></span>
-              <span class="visually-hidden">Next</span>
+              <span className="visually-hidden">Next</span>
             </button>
           </div>
         </div>
-        <div class="custom-shape-divider-bottom-1715364342">
+        <div className="custom-shape-divider-bottom-1715364342">
           <svg
             data-name="Layer 1"
             xmlns="http://www.w3.org/2000/svg"
@@ -94,7 +94,7 @@ function About() {
           >
             <path
               d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-              class="shape-fill"
+              className="shape-fill"
             ></path>
           </svg>
         </div>

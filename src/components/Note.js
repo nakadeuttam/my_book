@@ -36,9 +36,34 @@ const Note = () => {
     const onChange = (ele) => {
       setNote({...note,[ele.target.name]:ele.target.value})
   }
+
+    const viewNote = (note) => {
+      setNote({id:note._id,etitle:note.title, edescription:note.description});
+    }
+
   return (
     <>
-  
+        {/* Modal  to view note in large*/}
+  <div className="modal fade modal-dialog modal-dialog-scrollable" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div className="modal-dialog">
+      <div className="modal-content">
+        <div className="modal-header">
+          <h1 className="modal-title fs-5" id="staticBackdropLabel">{note.etitle}</h1>
+          <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div className="modal-body">
+          {note.edescription}
+        </div>
+        <div className="modal-footer">
+          <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
   {/* model button  referencing through edit icon*/}
 <button ref={ref} type="button" className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
   
@@ -100,7 +125,7 @@ const Note = () => {
     <div className="container">
       {notes.length === 0 && <h2 className="text-center">No Notes Avilable</h2>}
     <div className='row'>{notes.map((note)=>{
-      return <Noteitem title={note.title} description={note.description} key={note._id}  note={note} updateNote={updateNote}></Noteitem>
+      return <Noteitem title={note.title} description={note.description} key={note._id}  note={note} updateNote={updateNote} viewNote={viewNote}></Noteitem>
     })}</div></div>
     </>
   )

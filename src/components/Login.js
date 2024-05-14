@@ -130,12 +130,12 @@ else{
             <div className="toggle">
                 <div className="toggle-panel toggle-left">
                     <h1>Welcome Back!</h1>
-                    <p>Enter your personal details to use all of site features</p>
+                    <p>Please do sign in to continue.</p>
                     <button className={`${loginToggle}`} id="login" onClick={toggle}>Sign In</button>
                 </div>
                 <div className="toggle-panel toggle-right">
                     <h1>Hello, Friend!</h1>
-                    <p>Register with your personal details to use all of site features</p>
+                    <p>Don't have account, Register here.</p>
                     <button className={`${loginToggle}`} id="register" onClick={toggle}>Sign Up</button>
                 </div>
             </div>

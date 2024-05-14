@@ -49,7 +49,7 @@
 }
 
 .loginContainer button{
-    background-color: #512da8;
+    background-color: #dc3545;;
     color: #fff;
     font-size: 12px;
     padding: 10px 45px;
@@ -165,7 +165,7 @@
 .toggle{
     background-color: #512da8;
     height: 100%;
-    background: linear-gradient(to right, #5c6bc0, #512da8);
+    background: linear-gradient(to right,#cc1829, #9b3a43);
     color: #fff;
     position: relative;
     left: -100%;
@@ -212,4 +212,8 @@
 }
 input{
     color:#333
+}
+#login{
+    background-color: transparent;
+    border: 1px solid #fff;
 }
