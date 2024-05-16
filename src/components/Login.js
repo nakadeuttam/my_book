@@ -29,6 +29,7 @@ const Login = () => {
 
     const handleLogin = async(e) => {
         e.preventDefault();
+        try{
         if(credentials.email && credentials.password)
             {
      const response = await fetch(`http://localhost:5000/sign_up/login`,{method:"POST", 
@@ -51,10 +52,12 @@ const Login = () => {
 else{
     alert("Enter Valid Entry");
 }
+        }catch(e){console.log("Unable to fetch")}
     }
 
     const handleSignup =async(e)=>{
         e.preventDefault()
+        try{
         if(credentials.Name &&  credentials.email_signup && credentials.password_signup)
             {
             
@@ -89,6 +92,7 @@ else{
     else{
         alert("Enter Valid entry")
     }
+}catch(e){console.log("unable to fetch")}
     }
   return (
     <div className="loginBody">

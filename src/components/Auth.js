@@ -24,12 +24,12 @@ function Auth() {
 
     const handleLogin = async(e) => {
         e.preventDefault();
-        
+        try{
      const response = await fetch(`http://localhost:5000/sign_up/login`,{method:"POST", 
      headers:{'Content-Type':'application/json'},
     body:JSON.stringify({email:credentials.email,password:credentials.password})});
     const json = await response.json();
-    console.log(json);
+        }catch(e){console.log("Unable to fetch")}
     if(json.success) {
         //redirect
         localStorage.setItem('token' , json.authtoken)
@@ -44,6 +44,7 @@ function Auth() {
 
     const handleSignup =async(e)=>{
         e.preventDefault()
+        try{
         const response = await fetch(`http://localhost:5000/sign_up/signUp`,{method:"POST", headers:{'Content-Type':'application/json'},
     body:JSON.stringify({name:credentials.Name , email:credentials.email_signup,password:credentials.password_signup})});
     const json=await response.json()
@@ -71,6 +72,7 @@ function Auth() {
             setLoginToggle('hidden');
         }
     }
+}catch(e){console.log("Unable to fetch details")}
     }
   return (
     <div className="loginBody">

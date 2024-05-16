@@ -5,10 +5,10 @@ import signup from "./Resources/signup.png";
 import login from "./Resources/login-bg.png";
 function About() {
   return (
-    <div className="parent">
+    <div className="parent_about">
       <div className="wrapper">
         <div className="container my-4">
-          <h4>Simple 3 steps to follow :-</h4>
+          <h4 style={{color:'white'}}>Simple 3 steps to follow :-</h4>
           <div id="carouselExampleCaptions" className="carousel slide">
             <div className="carousel-indicators">
               <button
@@ -99,7 +99,7 @@ function About() {
           </svg>
         </div>
       </div>
-      <section className="wrapper2">
+      <div className="wrapper2">
         <div className="features">
           <h3 className="my-3">Features:</h3>
           <ul>
@@ -192,7 +192,7 @@ function About() {
             ></path>
           </svg>
         </div>
-      </section>
+      </div>
     </div>
   );
 }

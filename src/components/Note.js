@@ -3,6 +3,7 @@ import noteContext from '../context/noteContext';
 import { useContext} from 'react';
 import Noteitem from './Noteitem';
 import { useNavigate } from "react-router-dom";
+import './Note.css';
 const Note = () => {
   const navigate = useNavigate();
   const {addNote} = useContext(noteContext);
@@ -40,6 +41,7 @@ const Note = () => {
     const viewNote = (note) => {
       setNote({id:note._id,etitle:note.title, edescription:note.description});
     }
+    
 
   return (
     <>

@@ -17,7 +17,7 @@ const Navbar = () => {
   const NAV_style = { backgroundColor: "#253a59" };
   return (
     <>
-      <nav className="navbar navbar-expand-lg" style={NAV_style}>
+      <nav className="navbar fixed-top navbar-expand-lg" style={NAV_style}>
         <div className="container-fluid">
           <Link
             className={` navbar-brand ${

@@ -27,8 +27,9 @@
     display: flex;
     justify-content:space-between;
     background: linear-gradient(rgb(37, 58, 89), #ca9797, #9198e5);
-   height: 91vh;
+   height: 100vh;
    width: 100%;
+   padding-top: 9vh;
    border: none;
    scroll-snap-align: start;
 
@@ -61,7 +62,8 @@
     position: relative;
     
     background: linear-gradient(rgb(37, 58, 89), #ca9797, #9198e5);
-   height: 91vh;
+   height: 100vh;
+   padding-top:9vh;
    width: 100%;
    border: none;
    scroll-snap-align: start;
@@ -90,7 +92,7 @@
 .parent{
     scroll-snap-type: y mandatory;
     overflow-y: scroll;
-    height: 91vh;
+    height: 100vh;
     width: 100%;
 }
 

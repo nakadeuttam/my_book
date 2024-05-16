@@ -20,7 +20,8 @@
 }
 .wrapper{
     background: linear-gradient(rgb(37, 58, 89), #ca9797, #9198e5);
-    
+    height:100vh;
+    padding-top: 9vh;
     
 }
 
@@ -41,19 +42,24 @@ img{
     
     
 }
-/* *{
-    color:#fff;
-} */
+
 .carousel-caption h5 , p{
     color:black;
 }
 
 .wrapper2{
-    height:91vh;
+    padding-top:9vh ;
+    height:100vh;
 }
 .features{
     padding:40px;
 }
 .features li{
     padding-bottom:10px;
+}
+.parent_about{
+    height: 100vh;
+    padding-top:3vh;
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
 }

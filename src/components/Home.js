@@ -5,7 +5,7 @@ import AddNote from "./AddNote";
 const Home = () => {
 
   return (
-    <div>
+    <div className="home_parent">
       
       <AddNote></AddNote>
       <div>
